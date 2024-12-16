@@ -11,27 +11,28 @@ config:
       name: Ramp up load
     - duration: 10
       arrivalRate: 10
-      rampTo: 30np
+      rampTo: 30
       name: Spike phase
-  # Load & configure a couple of useful plugins
-  # https://docs.art/reference/extensions
   plugins:
     ensure: {}
     apdex: {}
     metrics-by-endpoint: {}
+
   apdex:
     threshold: 100
+
   ensure:
     thresholds:
       - http.response_time.p99: 100
       - http.response_time.p95: 75
-scenarios:
+
+scenarios:  
   - flow:
       - loop:
           - get:
-              url: "/kategori/frukt-och-gront"
+              url: "/kategori/frukt-och-gront"  
           - get:
-              url: "/kategori/blommor-och-tradgard"
+              url: "/kategori/blommor-och-tradgard" 
           - get:
-              url: "/kategori/apotek"
+              url: "/kategori/apotek" 
         count: 100

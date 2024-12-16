@@ -1,0 +1,41 @@
+config:
+  target: http://localhost:4000
+  phases:
+    - duration: 10
+      arrivalRate: 2
+      rampTo: 5
+      name: Warm up phase
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 200
+      - http.response_time.p95: 175
+
+scenarios:
+  - name: Complete URL Cycle
+    flow:
+      - get:
+          url: "/kategori/kott-chark-och-fagel"
+      - think: 1
+      - get:
+          url: "/kategori/kott-chark-och-fagel/fagel"
+      - think: 1
+      - get:
+          url: "/produkt/101219880_KG/kategori/kott-chark-och-fagel/fagel"
+      - think: 1
+      - get:
+          url: "/kategori/frukt-och-gront"
+      - think: 2
+      - get:
+          url: "/kategori/mejeri-ost-och-agg"
+      - think: 1
+      - get:
+          url: "/kategori/brod-och-kakor"
+      - think: 2
+      - get:
+          url: "/kategori/skafferi"
