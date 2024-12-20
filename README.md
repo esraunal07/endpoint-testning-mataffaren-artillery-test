@@ -1,10 +1,12 @@
 Workshop: Artillery + Playwright for Realistic Load Testing
 
-Overview
+Overview :
+
 This workshop focused on enhancing load testing for the Mataffären web app using Artillery with Playwright 
 to simulate realistic user interactions, including JavaScript execution, page rendering, and API calls.
 
-Objectives
+Objectives :
+
 Extend Artillery tests to include realistic user behavior and full page load.
 Integrate Playwright to simulate interactions like clicks, rendering, and API requests.
 Compare session durations and response times between basic and enhanced tests.
